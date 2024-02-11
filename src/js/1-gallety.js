@@ -1,8 +1,5 @@
 "use strict"
 
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
-
 const images = [
   {
     preview:
@@ -69,6 +66,9 @@ const images = [
   },
 ];
 
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 const container = document.querySelector(".gallery");
 container.innerHTML = createImagesMarcup(images);
 
@@ -78,12 +78,12 @@ function createImagesMarcup(images) {
 	<a class="gallery-link" href="${original}">
 		<img 
 			class="gallery-image" 
-			src="s${preview}" 
+			src="${preview}" 
 			alt="${description}" 
 			/>
 	</a>
 </li>`).join("")
 }
 
-const lightbox = new SimpleLightbox('.gallery-link', { /* options */ });
+const lightbox = new SimpleLightbox('.gallery-link', { captionsData: "alt", captionDeay: 250, });
 
