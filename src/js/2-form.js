@@ -24,9 +24,9 @@ form.addEventListener("input", (event) => {
 
 // Під час завантаження сторінки перевіряй стан сховища, і якщо там є збережені дані, то заповнюй ними поля форми. В іншому випадку поля повинні бути порожніми.
 
-const localData = localStorage.getItem(localStorageKey);
-if (localData){
-    const data = JSON.parse(localData);
+const localFormData = localStorage.getItem(localStorageKey);
+if (localFormData){
+    const data = JSON.parse(localFormData);
     form.email.value = data.email;
     form.message.value = data.message;
 }
