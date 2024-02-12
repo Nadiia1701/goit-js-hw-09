@@ -7,8 +7,8 @@ const localStorageKey = "feedback-form-state";
 // Використовуючи делегуваня, відстежуй на формі подію input і щоразу записуй у локальне сховище об'єкт з полями email і message, у яких зберігай поточні значення полів форми. Нехай ключем для сховища буде рядок "feedback-form-state".
 
 function readFormData(form) {
-    const email = form.email.value;
-    const message = form.message.value;
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
     return {
         message,
         email,
@@ -16,7 +16,6 @@ function readFormData(form) {
 }
 
 form.addEventListener("input", (event) => {
-    event.preventDefault();
     const data = readFormData(event.currentTarget);
     const jsonData = JSON.stringify(data);
     localStorage.setItem(localStorageKey, jsonData);
@@ -35,6 +34,11 @@ if (localFormData){
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
+    if (form.elements.email.value === ""|| form.elements.message.value === "") {
+        event.preventDefault();
+        alert('Будь ласка, заповніть всі поля форми.');
+        return;
+    } 
     const object = {
     email: event.currentTarget.elements.email.value,
     message: event.currentTarget.elements.message.value,
