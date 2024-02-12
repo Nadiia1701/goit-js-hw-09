@@ -7,8 +7,8 @@ const localStorageKey = "feedback-form-state";
 // Використовуючи делегуваня, відстежуй на формі подію input і щоразу записуй у локальне сховище об'єкт з полями email і message, у яких зберігай поточні значення полів форми. Нехай ключем для сховища буде рядок "feedback-form-state".
 
 function readFormData(form) {
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
+    const email = form.email.value;
+    const message = form.message.value;
     return {
         message,
         email,
@@ -40,8 +40,8 @@ form.addEventListener("submit", (event) => {
         return;
     } 
     const object = {
-    email: event.currentTarget.elements.email.value,
-    message: event.currentTarget.elements.message.value,
+    email: event.currentTarget.elements.email.value.trim(),
+    message: event.currentTarget.elements.message.value.trim(),
     };
     console.log(object);
     localStorage.removeItem(localStorageKey);
